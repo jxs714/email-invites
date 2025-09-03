@@ -1,0 +1,38 @@
+[project]
+name = "email-invites"
+dynamic = ["version"]
+description = "Invite users by email"
+readme = "README.rst"
+license = {text = "Apache Software License"}
+keywords = ["pretalx"]
+authors = [
+  {name = "Fueled By X", email = "developers at fueledbyx.com"},
+]
+maintainers = [
+  {name = "Fueled By X", email = "developers at fueledbyx.com"},
+]
+
+dependencies = []
+
+[project.urls]
+homepage = "https://github.com/jxs714/email-invites"
+repository = "https://github.com/jxs714/email-invites.git"
+
+[project.entry-points."pretalx.plugin"]
+email_invites = "email_invites:PretalxPluginMeta"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "email_invites.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["pretalx*"]
+
+[tool.check-manifest]
+ignore = [".*"]

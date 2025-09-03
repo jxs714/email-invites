@@ -1,0 +1,6 @@
+recursive-include email_invites/static *
+recursive-include email_invites/templates *
+exclude email_invites/locale/django.pot
+recursive-include email_invites/locale *
+recursive-include email_invites *.py
+include Makefile
