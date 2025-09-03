@@ -2,11 +2,9 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
-
 from pretalx.common.mail import mail
 from pretalx.common.models import MailTemplate
 from pretalx.person.models import User
-
 from .forms import InvitationForm
 
 
@@ -42,4 +40,4 @@ class InvitationSendView(FormView):
             )
 
         messages.success(self.request, _("Invitations sent successfully!"))
-        return redirect("plugins:email_invites:send_invitations", event=event.slug)
+        return redirect("plugins:email_invites:send_invitations")
