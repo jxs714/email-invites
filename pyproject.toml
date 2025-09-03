@@ -1,2 +1,4 @@
-[project.entry-points."pretalx.plugin"]
-email_invites = "email_invites:EmailInvitesPlugin"
+[project]
+name = "pretalx-email-invites"
+version = "0.0.1"  # <--- ADD THIS EXACT LINE
+description = "Send mass email invitations using pretalx templates"
