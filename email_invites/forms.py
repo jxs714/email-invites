@@ -1,17 +1,17 @@
+from django import forms
+from django.utils.translation import gettext_lazy as _
 
-from i18nfield.forms import I18nModelForm
-
-from .models import EmailInvitesSettings
+from pretalx.common.models import MailTemplate
 
 
-class EmailInvitesSettingsForm(I18nModelForm):
+class InvitationForm(forms.Form):
+    template = forms.ModelChoiceField(
+        queryset=MailTemplate.objects.none(),
+        label=_("Email Template"),
+        empty_label=None,
+    )
 
-    def __init__(self, *args, event=None, **kwargs):
-        self.instance, _ = EmailInvitesSettings.objects.get_or_create(event=event)
-        super().__init__(*args, **kwargs, instance=self.instance, locales=event.locales)
-
-    class Meta:
-        model = EmailInvitesSettings
-        fields = ("some_setting", )
-        widgets = {}
-
+    def __init__(self, *args, **kwargs):
+        self.event = kwargs.pop("event")
+        super().__init__(*args, **kwargs)
+        self.fields["template"].queryset = MailTemplate.objects.filter(event=self.event)
