@@ -6,10 +6,10 @@ readme = "README.rst"
 license = {text = "Apache Software License"}
 keywords = ["pretalx"]
 authors = [
-  {name = "Fueled By X", email = "developers at fueledbyx.com"},
+  {name = "Fueled By X", email = "developers@fueledbyx.com"},
 ]
 maintainers = [
-  {name = "Fueled By X", email = "developers at fueledbyx.com"},
+  {name = "Fueled By X", email = "developers@fueledbyx.com"},
 ]
 
 dependencies = []
@@ -36,3 +36,4 @@ include = ["pretalx*"]
 
 [tool.check-manifest]
 ignore = [".*"]
+
