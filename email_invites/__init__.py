@@ -1,5 +1,3 @@
-# NO IMPORTS AT THE TOP LEVEL
-
 class EmailInvitesPlugin:
     def __init__(self):
         from django.utils.translation import gettext_lazy as _
@@ -9,13 +7,24 @@ class EmailInvitesPlugin:
         self.version = "0.0.1"
 
     def ready(self):
-        # Empty - no imports here
         pass
 
     def get_urls(self):
-        # Import only when absolutely needed
         try:
             from . import urls
             return urls.urlpatterns
         except ImportError:
             return []
+
+    # ADD THIS METHOD FOR THE MENU ITEM
+    def get_orga_urls(self):
+        from django.urls import path
+        from . import views
+        
+        return [
+            path(
+                "send-invitations/",
+                views.InvitationSendView.as_view(),
+                name="send_invitations",
+            ),
+        ]
