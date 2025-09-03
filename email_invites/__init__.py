@@ -1,3 +1,5 @@
+__version__ = "0.0.1"
+
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
@@ -32,3 +34,4 @@ class EmailInvitesPlugin:
                 name="send_invitations",
             ),
         )
+
