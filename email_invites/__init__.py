@@ -1,17 +1,19 @@
-from django.utils.translation import gettext_lazy as _
+# NO IMPORTS AT THE TOP LEVEL
 
 class EmailInvitesPlugin:
-    name = _("Email Invites")
-    author = "JXS"
-    description = _("Send mass email invitations using pretalx templates")
-    version = "0.0.1"
+    def __init__(self):
+        from django.utils.translation import gettext_lazy as _
+        self.name = _("Email Invites")
+        self.author = "JXS"
+        self.description = _("Send mass email invitations using pretalx templates")
+        self.version = "0.0.1"
 
     def ready(self):
-        # Don't import anything here that might cause issues
+        # Empty - no imports here
         pass
 
     def get_urls(self):
-        # Import only when needed to avoid circular imports
+        # Import only when absolutely needed
         try:
             from . import urls
             return urls.urlpatterns
