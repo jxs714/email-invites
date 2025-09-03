@@ -1,6 +1,10 @@
 from django.utils.translation import gettext_lazy as _
 
-from pretalx.plugin import Plugin
+try:
+    from pretalx.plugin import Plugin
+except ImportError:
+    class Plugin:
+        pass
 
 
 class EmailInvitesPlugin(Plugin):
