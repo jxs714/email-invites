@@ -1,26 +1,19 @@
+from django.urls import path
+from django.utils.translation import gettext_lazy as _
+
 class EmailInvitesPlugin:
-    def __init__(self):
-        from django.utils.translation import gettext_lazy as _
-        self.name = _("Email Invites")
-        self.author = "JXS"
-        self.description = _("Send mass email invitations using pretalx templates")
-        self.version = "0.0.1"
+    name = _("Email Invites")
+    author = "JXS"
+    description = _("Send mass email invitations using pretalx templates")
+    version = "0.0.1"
 
     def ready(self):
+        # This method is called when the plugin is loaded
         pass
 
     def get_urls(self):
-        try:
-            from . import urls
-            return urls.urlpatterns
-        except ImportError:
-            return []
-
-    # ADD THIS METHOD FOR THE MENU ITEM
-    def get_orga_urls(self):
-        from django.urls import path
+        # This registers the URLs for the plugin
         from . import views
-        
         return [
             path(
                 "send-invitations/",
@@ -28,3 +21,14 @@ class EmailInvitesPlugin:
                 name="send_invitations",
             ),
         ]
+
+    # CRITICAL: This method adds the plugin to the admin menu
+    def register_orga_urls(self, urlpatterns):
+        from . import views
+        urlpatterns.append(
+            path(
+                "send-invitations/",
+                views.InvitationSendView.as_view(),
+                name="send_invitations",
+            ),
+        )
