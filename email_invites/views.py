@@ -6,7 +6,7 @@ from pretalx.common.mail import mail
 from pretalx.common.models import MailTemplate
 from .forms import InvitationForm
 
-class InvitationSendView(FormView):
+class InvitationSendView(FormView):  # Make sure this matches exactly
     template_name = "email_invites/send_invitations.html"
     form_class = InvitationForm
 
