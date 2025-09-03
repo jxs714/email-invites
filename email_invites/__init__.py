@@ -14,17 +14,12 @@ class EmailInvitesPlugin(Plugin):
     version = "0.0.1"
 
     def ready(self):
-        # Import here to avoid circular imports during plugin discovery
-        try:
-            from . import views  # noqa
-        except ImportError as e:
-            # Log the error but don't crash the plugin loading
-            print(f"Error importing views: {e}")
+        # Don't import anything here that might cause circular imports
+        pass
 
     def get_urls(self):
         try:
             from . import urls
             return urls.urlpatterns
-        except ImportError as e:
-            print(f"Error importing urls: {e}")
+        except ImportError:
             return []
